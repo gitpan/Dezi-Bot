@@ -22,7 +22,7 @@ __PACKAGE__->mk_accessors(
         )
 );
 
-our $VERSION = '0.001';
+our $VERSION = '0.002';
 
 =head1 NAME
 
@@ -217,8 +217,6 @@ EOF
 1;
 
 __END__
-
-=head1 METHODS
 
 =head1 AUTHOR
 

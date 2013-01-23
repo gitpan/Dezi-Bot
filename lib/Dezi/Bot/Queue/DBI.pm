@@ -10,7 +10,7 @@ use DBIx::InsertHash;
 use Digest::MD5 qw( md5_hex );
 use Time::HiRes;
 
-our $VERSION = '0.001';
+our $VERSION = '0.002';
 
 =head1 NAME
 
@@ -282,8 +282,6 @@ EOF
 1;
 
 __END__
-
-=head1 METHODS
 
 =head1 AUTHOR
 

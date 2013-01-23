@@ -4,7 +4,7 @@ use warnings;
 use Carp;
 use Module::Load;
 
-our $VERSION = '0.001';
+our $VERSION = '0.002';
 
 =head1 NAME
 
@@ -171,8 +171,6 @@ sub size {
 1;
 
 __END__
-
-=head1 METHODS
 
 =head1 AUTHOR
 

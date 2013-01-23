@@ -29,8 +29,9 @@ requires:
   Digest::MD5: 0
   File::Temp: 0
   Module::Load: 0
-  Parallel::Prefork: 0
-  SWISH::Prog: 0.67
+  Parallel::Forker: 0
+  Parallel::Scoreboard: 0
+  SWISH::Prog: 0.68
   Test::More: 0
   Time::HiRes: 0
   perl: 5.8.9
@@ -39,4 +40,4 @@ resources:
   homepage: https://github.com/karpet/dezi-bot
   license: http://opensource.org/licenses/gpl-license.php
   repository: http://github.com/karpet/dezi-bot
-version: 0.001
+version: 0.002
