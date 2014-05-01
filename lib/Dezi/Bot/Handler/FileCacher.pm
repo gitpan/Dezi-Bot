@@ -9,6 +9,8 @@ use DBIx::InsertHash;
 use Time::HiRes;
 use Dezi::Bot::Utils;
 use File::Slurp;
+use Encode;
+use Search::Tools::UTF8;
 
 __PACKAGE__->mk_accessors(
     qw(
@@ -17,12 +19,13 @@ __PACKAGE__->mk_accessors(
         username
         password
         table_name
+        queue_name
         quote
         quote_char
         )
 );
 
-our $VERSION = '0.002';
+our $VERSION = '0.003';
 
 =head1 NAME
 
@@ -70,6 +73,11 @@ Passed to DBI->connect.
 
 The B<table_name> value will be used
 to insert rows. Defaults to C<dezi_file_cache>.
+
+=item queue_name
+
+The B<queue_name> value will be inserted
+for each row in the database.
 
 =item quote
 
@@ -137,7 +145,7 @@ sub handle {
     my $doc         = shift or croak "Doc required";
     my $buf_ref     = \$doc->content;
     my $uri_md5     = md5_hex( $doc->url . "" );
-    my $content_md5 = md5_hex($$buf_ref);
+    my $content_md5 = md5_hex( encode_utf8( to_utf8($$buf_ref) ) );
     my $file_path
         = Dezi::Bot::Utils::file_cache_path( $self->{root_dir}, $uri_md5 );
 
@@ -149,7 +157,7 @@ sub handle {
         uri_md5     => $uri_md5,
         content_md5 => $content_md5,
         uri         => $doc->url,
-        queue_name  => $bot->spider->agent,
+        queue_name  => ( $self->queue_name || $bot->spider->agent ),
         client_name => $bot->spider->agent,
         upd_time    => $doc->modtime,
     );
